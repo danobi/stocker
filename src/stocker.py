@@ -53,23 +53,26 @@ def get_returns(data,interval,startdate,enddate):
     return return_list
 
 """Beginning of execution"""
+""" TEST CASE
 symbol = 'MSFT'
 action = 'returns'
 raw_interval = 'week'
 startdate = datetime.date(2008,02,01)
 enddate = datetime.date(2014,02,01)
-#symbol = raw_input("Please enter in stock symbol: ")
-#action = raw_input("What information would you like? (returns, current,TBA): ")
+"""
+""" ACTUAL CODE
+symbol = raw_input("Please enter in stock symbol: ")
+action = raw_input("What information would you like? (returns, current,TBA): ")
 if action == 'returns':
-    #raw_startdate = raw_input("Please enter start date (YYYY-MM-DD): ")
-    #raw_enddate = raw_input("Please enter end date (YYYY-MM-DD): ")
-    #raw_interval = raw_input("Please enter sample rate (week,month,year): ")
+    raw_startdate = raw_input("Please enter start date (YYYY-MM-DD): ")
+    raw_enddate = raw_input("Please enter end date (YYYY-MM-DD): ")
+    raw_interval = raw_input("Please enter sample rate (week,month,year): ")
 
-    #Format dates
-    #start_list = raw_startdate.split('-')
-    #end_list = raw_enddate.split('-')
-    #startdate = datetime.date(int(start_list[0]),int(start_list[1]),int(start_list[2]))
-    #enddate = datetime.date(int(end_list[0]),int(end_list[1]),int(end_list[2]))
+    Format dates
+    start_list = raw_startdate.split('-')
+    end_list = raw_enddate.split('-')
+    startdate = datetime.date(int(start_list[0]),int(start_list[1]),int(start_list[2]))
+    enddate = datetime.date(int(end_list[0]),int(end_list[1]),int(end_list[2]))
 
     #Format interval
     interval = 0
@@ -83,11 +86,6 @@ if action == 'returns':
     #Pull data
     data = get_historical_data(symbol)
 
-    """
-    for row in data.rows:
-        print row['Date']
-    """
-
     #Get return data
     csv_data = get_returns(data,interval,startdate,enddate)
 
@@ -96,4 +94,5 @@ if action == 'returns':
         print x
 elif action == 'current':
     data = get_current_quotes(symbol)
+"""
 
