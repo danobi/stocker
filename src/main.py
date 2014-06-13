@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import datetime
 
 #This function assumes that filename is valid and not currently in use
+#Also not tested, use with caution
 def export_csv(filename,data):
     myfile = open(filename,'a')
     for i in range(0,len(data)):
@@ -33,10 +34,11 @@ def export_returns_graph(data):
     #plt.axis(dates[0],dates[len(dates)-1],min(returns),max(returns))
     plt.show()
 
+""" EXAMPLE USAGE: Uncomment to make it do stuff
 startdate = datetime.date(2000,02,01)
 enddate = datetime.date(2014,02,01)
 data = stocker.get_historical_data('AAPL')
 csv_data = stocker.get_returns(data,7,startdate,enddate)
 export_returns_graph(csv_data)
-
+"""
 

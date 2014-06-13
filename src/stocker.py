@@ -12,13 +12,14 @@ def get_historical_data(symbol):
     query = 'select * from csv where url=\'%s\' and columns=\"Date,Open,High,Low,Close,Volume,AdjClose\"'% (HISTORICAL_URL + symbol)
     return yql_object.execute(query,env=DATATABLES_URL)
 
+#Gets current quotes (today) and returns a YQL object
 def get_current_quotes(symbol):
     yql_object = yql.Public()
     query = 'select * from "%s" where symbol="%s"' % (YAHOO_QUOTES,symbol)
     return yql_object.execute(query,env=DATATABLES_URL)
 
 #Returns list of all formatted returns 
-#startdate and enddate MUST be accurate and real dates
+#startdate and enddate MUST be accurate(ie. trades occured that day) and real dates of type date
 #interval is in DAYS
 def get_returns(data,interval,startdate,enddate):
     return_list = []
@@ -52,15 +53,9 @@ def get_returns(data,interval,startdate,enddate):
                 old_sell_price = row['Close']
     return return_list
 
-"""Beginning of execution"""
-""" TEST CASE
-symbol = 'MSFT'
-action = 'returns'
-raw_interval = 'week'
-startdate = datetime.date(2008,02,01)
-enddate = datetime.date(2014,02,01)
-"""
-""" ACTUAL CODE
+"""Beginning of execution
+#This code should run and do stuff if uncommented, but won't display anything
+#Fix/change it to make it work if you want
 symbol = raw_input("Please enter in stock symbol: ")
 action = raw_input("What information would you like? (returns, current,TBA): ")
 if action == 'returns':
@@ -89,9 +84,6 @@ if action == 'returns':
     #Get return data
     csv_data = get_returns(data,interval,startdate,enddate)
 
-    #debug
-    for x in csv_data:
-        print x
 elif action == 'current':
     data = get_current_quotes(symbol)
 """
